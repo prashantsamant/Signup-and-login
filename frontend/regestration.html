@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGESTRATION FORM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <form>
+        <h1>REGESTRATION FORM</h1>
+        <lable for="text" >FirstName</lable>
+        <div>
+            <input type="text" id="uname">
+        </div>
+        <lable for="text" >LastName</lable>
+        <div>
+            <input type="text" id="ulname">
+        </div>
+        <lable for="text" >Emailid</lable>
+        <div>
+            <input type="text" id="uemail">
+        </div>
+        <lable for="text" >Password</lable>
+        <div>
+            <input type="password" id="upass">
+        </div>
+        <div>
+            <input type="button" value="SUBMIT" id="datasubmit">
+       </div>
+
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script>
+  
+    $('#datasubmit').click(function () {
+                
+                saveUserRecord()
+                
+            })
+        function saveUserRecord() {
+            var regModel = {};
+            regModel.FirstName = $('#uname').val();
+            regModel.LastName = $('#ulname').val();
+            regModel.Emailid = $('#uemail').val();
+            regModel.Password = $('#upass').val();
+            $.ajax({
+                url: "http://localhost:3005/saveuserdetails",
+                type: "POST",
+                data: regModel,
+                success: function (result) {
+                    console.log("result"+result)
+                    $('#uname,#ulname,#uemail,#upass').val('');
+                  
+
+
+                }
+            })
+        }
+      
+        
+
+
+    </script>
+
+
+</body>
+
+</html>
